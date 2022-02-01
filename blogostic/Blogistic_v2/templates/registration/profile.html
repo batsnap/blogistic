@@ -1,0 +1,73 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-2">
+        {%if user.is_staff %}
+        <a href="operator/workers">Рабочие</a><br>
+        <a href="operator/orders">Заказы</a><br>
+        <a href="operator/operators">Операторы</a><br>
+        {%else%}
+        <a href="/accounts/profile/orders"><h3>Список заказов</h3></a><br>
+        <a href="/accounts/profile/make_order"><h3>Сделать заказ</h3></a>
+        {%endif%}
+        
+    </div>
+    <div class="col-sm-6">
+        <center><h1>Ваши личные данные</h1></center>
+             <table class="table">
+                 <tbody>
+                    <tr>
+                        <td>ФИО</td>
+                        <td>{{profile.Full_name}}</td>
+                    </tr>
+                    {%if user.is_staff %}
+                    <tr>
+                        <td>Должность</td>
+                        <td>{{profile.position}}</td>
+                    </tr> 
+                    
+                    {%else%}
+                    <tr>
+                        <td>День рождения</td>
+                        <td>{{profile.birthday}}</td>
+                    </tr>
+                    {%endif%}
+                    <tr>
+                        <td>Имя пользователя</td>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Пароль</td>
+                        <td>{{user.password}}</td>
+                    </tr>
+                    {%if user.is_staff %}
+                    <tr>
+                        <td>Опыт работы</td>
+                        <td>{{profile.experience}}</td>
+                    </tr>
+                    {%else%}
+                    <tr>
+                        <td>Номер карты</td>
+                        <td>{{profile.Card_number}}</td>
+                    </tr>
+                    {%endif%}
+                    
+                </tbody>
+             </table>
+    </div>
+    <div class="col-sm-4">
+        <a href="" onclick="go('profile/edit'); return false;">Изменить данный профиля</a><br>
+        {%if user.is_staff %}
+        <a href="/admin">Админка</a>
+        {%endif%}
+        
+    </div>
+</div>
+{% endblock %}
+
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww 
