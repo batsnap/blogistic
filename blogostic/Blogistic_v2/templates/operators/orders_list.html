@@ -1,0 +1,53 @@
+{% extends "operators/base_operators.html" %}
+{%load static%}
+{%block list%}
+    <div class="row">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h4>Поиск</h4><input type="text" name='search'>
+            <input type="submit" value="Найти">
+        </form>
+    </div>
+    <table class="table">
+        <tr>
+            <th>№</th>
+            <th>Имя заказчика</th>
+            <th>Имя оператора</th>
+            <th>Имя водителя</th>
+            <th>Адрес отправки</th>
+            <th>Адрес назначения</th>
+            <th>Время заявки</th>
+            <th>Дата заявки и время</th>
+            <th>Статус заявки</th>
+            <th>Количество объектов</th>
+            <th>Масса посылки</th>
+            <th>Цена</th>
+            <th>Тип оплаты</th>
+            <th>Дополнительные услуги</th>
+        </tr>
+        {%for key,value in add_service.items %}
+            <tr>
+                
+                <td><a href = '' onclick="go('orders/{{key.id_order}}'); return false;">{{key.id_order}}</a></td>
+                <td>{{key.id_client.Full_name}}</td>
+                <td>{{key.id_operator.Full_name}}</td>
+                <td>{{key.id_worker.Full_name}}</td>
+                <td>{{key.addressPV}}</td>
+                <td>{{key.addressPD}}</td>
+                <td>{{key.date}}</td>
+                <td>{{key.time}}</td>
+                <td>{{key.confirmation_order}}</td>
+                <td>{{key.count_objects}}</td>
+                <td>{{key.weight}}</td>
+                <td>{{key.price}}</td>
+                <td>{%if key.type_pay == 'cash'%} Наличные {%else%} Картой {%endif%}</td>
+                <td>
+                    {%for add in value%}
+                        {{add.number_service.name}} {{add.number_service.cost}}
+                    {%endfor%}
+                </td>
+
+            </tr>
+        {%endfor%}
+    </table>
+{%endblock%}    

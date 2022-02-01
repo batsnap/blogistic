@@ -1,0 +1,39 @@
+@font-face{
+    font-family: "Current-Regular";
+    src:url("Current-Regular.woff") format("woff");
+
+}
+h1{
+    color: blue;
+    font-family: "Current-Regular";
+    
+}
+.logo{
+    font-family: "Current-Regular";
+    font-size: 40pt;
+    color: black;
+}
+
+.entry{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20pt;
+    color: black;
+    margin-right: 1%;
+    margin-top: 5%;
+}
+.line{
+    background: rgb(15,15,230);
+    background: radial-gradient(circle, rgba(15,15,230,1) 0%, rgba(0,212,255,1) 100%, rgba(0,0,0,1) 100%);  
+    font-size: 40pt;
+    text-align: center;
+    tab-size: 30;
+    color: black;
+}
+.line2{
+    background: rgb(184, 88, 9);
+    background: radial-gradient(circle, rgba(15,15,230,1) 0%, rgba(0,212,255,1) 100%, rgba(0,0,0,1) 100%);  
+    font-size: 40pt;
+    text-align: center;
+    tab-size: 30;
+    color: black;
+}

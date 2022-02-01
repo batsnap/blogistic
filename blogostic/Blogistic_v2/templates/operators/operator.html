@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <form action="" method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <p><input action="window.close();" type="submit" value="Сохранить"></p>     
+    </form>
+
+{% endblock %}

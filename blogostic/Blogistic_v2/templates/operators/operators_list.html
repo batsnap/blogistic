@@ -1,0 +1,33 @@
+{% extends "operators/base_operators.html" %}
+{%load static%}
+{%block list%}
+    <div class="row">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h4>Поиск</h4><input type="text" name='search'>
+            <input type="submit" value="Найти">
+        </form>
+    </div>
+    <table class="table">
+        <tr>
+            <th>№</th>
+            <th>ФИО</th>
+            <th>Имя пользователя</th>
+            <th>Должность</th>
+            <th>Email</th>
+            <th>Опыт работы</th>
+            <th>Телефон</th>
+        </tr>
+        {%for operator in operators%}
+            <tr>
+                <td><a href="" onclick="go('operators/{{operator.id_operator}}'); return false;">{{operator.id_operator}}</a></td>
+                <td>{{operator.Full_name}}</td>
+                <td>{{operator.user.username}}</td>
+                <td>{{operator.position}}</td>
+                <td>{{operator.user.email}}</td>
+                <td>{{operator.experience}}</td>
+                <td>{{operator.phone_number}}</td>
+            </tr>
+        {%endfor%}
+    </table>
+{%endblock%}

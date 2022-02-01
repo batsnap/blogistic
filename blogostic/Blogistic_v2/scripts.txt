@@ -1,0 +1,104 @@
+Генерация клиентов
+a=open('/home/batyr/Projects/web/web_programming/blogistic/blogostic/Blogistic/tests/clients.txt','r')
+	
+	for i in a:
+		l=i.split('/')[3]
+		l=l[6]+l[7]+l[8]+l[9]+'-'+l[3]+l[4]+'-'+l[0]+l[1]
+		user=User()
+		user.id=User.objects.count()+1
+		user.username=i.split('/')[2]
+		user.set_password(i.split('/')[1])
+		user.email=i.split('/')[4]
+		user.first_name=i.split('/')[0].split(' ')[0]
+		user.last_name=i.split('/')[0].split(' ')[1]
+		user.save()
+		clien=client()
+		clien.id_client=client.objects.count()+1
+		clien.user=user
+		clien.Full_name=i.split('/')[0]
+		clien.birthday=l
+		clien.Card_number=i.split('/')[5]
+		clien.save()
+		l=''
+	
+	a=open('/home/batyr/Projects/web/web_programming/blogistic/blogostic/Blogistic/tests/operator.txt','r')
+Генерация операторов
+	for i in a:
+		user=User()
+		user.id=User.objects.count()+1
+		user.set_password(i.split('/')[1])
+		user.email=i.split('/')[4]
+		user.first_name=i.split('/')[0].split(' ')[0]
+		user.last_name=i.split('/')[0].split(' ')[1]
+		user.is_staff=True
+		user.username=i.split('/')[2]
+		user.save()
+		clien=operator()
+		clien.id_operator=operator.objects.count()+1
+		clien.user=user
+		clien.Full_name=i.split('/')[0]
+		clien.phone_number=i.split('/')[5]
+		clien.position=i.split('/')[3]
+		clien.experience=str(randint(1,10))+' лет'
+		clien.save()
+Генерация рабочих
+	a=open('/home/batyr/Projects/web/web_programming/blogistic/blogostic/Blogistic/tests/worker.txt','r')
+	
+	for i in a:
+		user=User()
+		user.id=User.objects.count()+1
+		user.set_password(i.split('/')[1])
+		user.email=i.split('/')[4]
+		user.first_name=i.split('/')[0].split(' ')[0]
+		user.last_name=i.split('/')[0].split(' ')[1]
+		user.is_staff=True
+		user.username=i.split('/')[2]
+		user.save()
+		clien=worker()
+		clien.id_worker=worker.objects.count()+1
+		clien.user=user
+		clien.Full_name=i.split('/')[0]
+		clien.phone_number=i.split('/')[5]
+		clien.position=i.split('/')[3]
+		clien.experience=str(randint(1,10))+' лет'
+		clien.save()
+
+def generation_base(request):
+	for i in range(1,501):
+		for j in range(1,4):
+			k=additional_service()
+			k.number_order=order.objects.all().filter(id_order=i)[0]
+			k.number_service=service.objects.all().filter(id_service=j)[0]
+			k.save()
+	return render(request,'main.html')
+Генерация заказов
+a=open('/home/batyr/Projects/web/web_programming/blogistic/blogostic/Blogistic/tests/address.txt','r')
+	k=[]
+	for i in a:
+		k.append(i.replace('\n',''))
+	for i in range(500):
+		Orders=order()
+		Orders.id_order=order.objects.count()+1
+		Orders.id_client=client.objects.all()[randint(1,client.objects.count())-1]
+		Orders.id_operator=operator.objects.all()[randint(1,operator.objects.count())-1]
+		Orders.id_worker=worker.objects.all().filter(position='Водитель')[randint(1,worker.objects.all().filter(position='Водитель').count()-1)]
+		Orders.addressPV=k[i].split('/')[0]
+		Orders.addressPD=k[i].split('/')[1]
+		Orders.date='2022-01-17'
+		Orders.time_in='10:15'
+		Orders.time_out='15:15'
+		Orders.count_objects=randint(5,20)
+		Orders.weight=randint(5,20)*50
+		Orders.type_thing='Коробки'
+		Orders.price=(Orders.weight//50)*500
+		if randint(-1,1)==1:
+			Orders.type_pay='card'
+		else:
+			Orders.type_pay='cash'
+		Orders.save()
+		l=service.objects.all()
+		for i in range(3):
+			add_services=additional_service()
+			add_services.number_order=Orders
+			add_services.number_service=l[i]
+			add_services.save()

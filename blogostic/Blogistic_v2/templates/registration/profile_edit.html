@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+    <form action="" method="post">
+        <tr><table class="table"></tr>
+        <tr>
+            <td><label for="">Полное имя</label></td>
+            <td>{{form.Full_name}}</td>
+        </tr>
+        <tr>
+            <td><label>Опыт работы</label></td>
+            <td>{{form.experience}}</td>
+        </tr>
+        <tr>
+            <td><label>Номер телефона</label</td>
+            <td>{{form.phone_number}}<br></td>
+        </tr>
+        <tr>
+            <td><label>Имя пользователя</label></td>
+            <td>{{form.username}}</td>
+        </tr>
+        <tr>
+            <td><label>Пароль</label></td>
+            <td>{{form.password}}</td>
+        </tr>
+        <tr>
+            <td><label>Поддтвержение пароля</label></td>
+            <td>{{form.password2}}</td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td>{{form.email}}<br></td>
+        </tr>
+    </table>
+        {% csrf_token %}
+        <p><input action="window.close();" type="submit" value="Сохранить"></p>     
+        
+        {% if form.errors %}
+            {{form.errors}}
+        {% endif %}
+    </form>
+
+{% endblock %}

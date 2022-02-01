@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{%load static%}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 align="center">Услуги предоставляемые компанией</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Машина</th>
+                        <th>Фото</th>
+                        <th>Характеристика</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Iveco</td>
+                        <td><img src="{% static 'small_car.png' %}" height="250" width="500"></td>
+                        <td>Вмещает от 500 кг до 2 тонн</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Isuzu ELF</td>
+                        <td><img src="{% static 'small_car_2.jpeg' %}" height="250" width="500"></td>
+                        <td>Вмещает от 500 кг до 2 тонн</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

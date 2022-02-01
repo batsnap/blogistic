@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{%load static%}
+{%block content%}
+    <div class="row">
+        <div class="col-sm-1">
+            <a href="/accounts/operator/workers">Рабочие</a><br>
+            <a href="/accounts/operator/orders">Заказы</a><br>
+            <a href="/accounts/operator/operators">Операторы</a><br>
+        </div>
+        <div class="col-sm-11">
+            {%block list%}
+
+            {%endblock%}
+        </div>
+    </div>
+{%endblock%}
